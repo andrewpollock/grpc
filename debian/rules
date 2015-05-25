@@ -15,15 +15,15 @@ export DEB_BUILD_MAINT_OPTIONS = hardening=+all
 #export DEB_LDFLAGS_MAINT_APPEND = -Wl,--as-needed
 
 override_dh_auto_build:
-	make shared_c prefix=/usr
+	make shared_c shared_cxx prefix=/usr
 
 override_dh_auto_test:
 ifeq (,$(filter nocheck,$(DEB_BUILD_OPTIONS)))
-	make test_c
+	make test_c test_cxx
 endif
 
 override_dh_auto_install:
-	make install_c prefix=$(CURDIR)/debian/tmp/usr
+	make install_c install_cxx prefix=$(CURDIR)/debian/tmp/usr
 
 %:
 	dh $@ --parallel
