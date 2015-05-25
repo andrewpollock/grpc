@@ -24,6 +24,14 @@ endif
 
 override_dh_auto_install:
 	make install_c install_cxx prefix=$(CURDIR)/debian/tmp/usr
+	cd $(CURDIR)/debian/tmp/usr/lib/ && \
+		ln -s libgpr.so.0.* libgpr.so.0
+	cd $(CURDIR)/debian/tmp/usr/lib/ && \
+		ln -s libgrpc.so.0.* libgrpc.so.0
+	cd $(CURDIR)/debian/tmp/usr/lib/ && \
+		ln -s  libgrpc++.so.0.* libgrpc++.so.0
+	cd $(CURDIR)/debian/tmp/usr/lib/ && \
+		ln -s  libgrpc++_unsecure.so.0.* libgrpc_unsecure.so.0
 
 %:
 	dh $@ --parallel
